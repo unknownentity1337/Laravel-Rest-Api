@@ -10,6 +10,14 @@
 
         <x-slot name="form">
             <div class="form-group col-span-6 sm:col-span-5">
+                <x-jet-label for="title" value="{{ __('Title') }}" />
+                <small>Title</small>
+                <x-jet-input id="title" type="text" class="mt-1 block w-full form-control shadow-none"
+                    wire:model.defer="changelog.title" />
+                <x-jet-input-error for="changelog.title" class="mt-2" />
+            </div>
+
+            <div class="form-group col-span-6 sm:col-span-5">
                 <x-jet-label for="content" value="{{ __('Content') }}" />
                 <small>Description</small>
                 <x-jet-input id="content" type="text" class="mt-1 block w-full form-control shadow-none"

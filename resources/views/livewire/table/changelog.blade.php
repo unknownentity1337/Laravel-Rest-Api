@@ -6,12 +6,11 @@
                         ID
                         @include('components.sort-icon', ['field' => 'id'])
                     </a></th>
-                <th><a wire:click.prevent="sortBy('name')" role="button" href="#">
+                <th><a wire:click.prevent="sortBy('title')" role="button" href="#">
                         Title
                         @include('components.sort-icon', ['field' => 'title'])
                     </a></th>
-                <th>
-                <th><a wire:click.prevent="sortBy('name')" role="button" href="#">
+                <th><a wire:click.prevent="sortBy('content')" role="button" href="#">
                         Content
                         @include('components.sort-icon', ['field' => 'content'])
                     </a></th>
