@@ -19,6 +19,7 @@ class CreateApi extends Component
     {
         $rules = [
             'api.title' => 'required',
+            'api.description' => 'required',
             'api.category_id' => 'required',
             'api.method' => 'required',
             'api.status' => 'required',
@@ -43,8 +44,9 @@ class CreateApi extends Component
         Api::query()
             ->where('id', $this->apiId)
             ->update([
-                "category_id" => $this->api->category_id,
                 "title" => $this->api->title,
+                "description" => $this->api->description,
+                "category_id" => $this->api->category_id,
                 "method" => $this->api->method,
                 "status" => $this->api->status,
                 "docs_id" => $this->api->docs_id

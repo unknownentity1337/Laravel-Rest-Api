@@ -17,6 +17,13 @@
                 <x-jet-input-error for="api.title" class="mt-2" />
             </div>
 
+            <div class="form-group col-span-6 sm:col-span-5">
+                <x-jet-label for="description" value="{{ __('Description') }}" />
+                <small>Api Description</small>
+                <x-jet-input id="description" type="text" class="mt-1 block w-full form-control shadow-none"
+                    wire:model.defer="api.description" />
+                <x-jet-input-error for="api.description" class="mt-2" />
+            </div>
 
             <div class="form-group col-span-6 sm:col-span-5">
                 <x-jet-label for="category" value="{{ __('Category') }}" />

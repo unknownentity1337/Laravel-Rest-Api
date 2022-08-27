@@ -9,7 +9,7 @@ class Api extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'category_id', 'status', 'method', 'docs_id'];
+    protected $fillable = ['title', 'description', 'category_id', 'method', 'status', 'docs_id'];
 
     public function category()
     {
@@ -18,6 +18,7 @@ class Api extends Model
     public static function search($query)
     {
         return empty($query) ? static::query()
-            : static::where('title', 'like', '%' . $query . '%');
+            : static::where('title', 'like', '%' . $query . '%')
+            ->orWhere('description', 'like', '%' . $query . '%');
     }
 }

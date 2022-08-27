@@ -39,13 +39,10 @@
                     <td>{{ $user->status }}</td>
                     <td>{{ $user->created_at->format('d M Y H:i') }}</td>
                     <td class="whitespace-no-wrap row-action--icon">
-                        @if (auth()->user()->id == $user->id)
-                        @else
-                            <a role="button" href="{{ route('user.edit', ['userId' => $user->id]) }}" class="mr-3"><i
-                                    class="fa fa-16px fa-pen"></i></a>
-                            <a role="button" x-on:click.prevent="deleteItem" href="#"><i
-                                    class="fa fa-16px fa-trash text-red-500"></i></a>
-                        @endif
+                        <a role="button" href="{{ route('user.edit', ['userId' => $user->id]) }}" class="mr-3"><i
+                                class="fa fa-16px fa-pen"></i></a>
+                        <a role="button" x-on:click.prevent="deleteItem" href="#"><i
+                                class="fa fa-16px fa-trash text-red-500"></i></a>
                     </td>
                 </tr>
             @endforeach

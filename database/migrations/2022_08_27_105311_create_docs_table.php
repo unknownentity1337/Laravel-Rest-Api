@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateApisTable extends Migration
+class CreateDocsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateApisTable extends Migration
      */
     public function up()
     {
-        Schema::create('apis', function (Blueprint $table) {
+        Schema::create('docs', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('description');
-            $table->foreignId('category_id')->index();
-            $table->string('method');
-            $table->enum('status', [1, 0]);
-            $table->foreignId('docs_id')->index();
+            $table->string('url');
+            $table->string('parameter');
+            $table->text('response');
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ class CreateApisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('apis');
+        Schema::dropIfExists('docs');
     }
 }

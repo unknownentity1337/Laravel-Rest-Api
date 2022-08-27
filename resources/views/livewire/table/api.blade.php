@@ -10,6 +10,10 @@
                         Title
                         @include('components.sort-icon', ['field' => 'title'])
                     </a></th>
+                <th><a wire:click.prevent="sortBy('description')" role="button" href="#">
+                        Description
+                        @include('components.sort-icon', ['field' => 'description'])
+                    </a></th>
                 <th><a wire:click.prevent="sortBy('content')" role="button" href="#">
                         Category
                         @include('components.sort-icon', ['field' => 'content'])
@@ -34,6 +38,7 @@
                 <tr x-data="window.__controller.dataTableController({{ $api->id }})">
                     <td>{{ $api->id }}</td>
                     <td>{{ $api->title }}</td>
+                    <td>{{ $api->description }}</td>
                     <td>{{ $api->category->title }}</td>
                     <td>{{ $api->method }}</td>
                     <td>{{ $api->status ? 'Active' : 'Deactive' }}</td>
