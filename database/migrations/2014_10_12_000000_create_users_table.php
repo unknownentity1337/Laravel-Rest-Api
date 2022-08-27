@@ -17,11 +17,14 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->integer('role')->default(0);
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->integer('role')->default(0);
+            $table->string('token')->default('');
+            $table->enum('status', ['free', 'premium', 'vip']);
+            $table->integer('limit')->default(100);
             $table->rememberToken();
             $table->text('profile_photo_path')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
         });
     }

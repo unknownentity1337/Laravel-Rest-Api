@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ChangelogController;
 use Illuminate\Support\Facades\Route;
@@ -34,10 +35,10 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
         Route::view('changelog/new', "pages.changelog.changelog-new")->name('changelog.new');
         Route::view('changelog/edit/{changelogId}', "pages.changelog.changelog-edit")->name('changelog.edit');
 
-        // Route Docs
-        Route::get('docs', [UserController::class, "index_view"])->name('docs');
-        Route::view('user/docs', "pages.user.user-new")->name('docs.new');
-        Route::view('user/edit/{docsId}', "pages.user.user-edit")->name('docs.edit');
+        // Route Category
+        Route::get('category', [CategoryController::class, "view"])->name('category');
+        Route::view('category/new', "pages.category.category-new")->name('category.new');
+        Route::view('category/edit/{categoryId}', "pages.category.category-edit")->name('category.edit');
     });
     Route::group(["middleware" => ['auth:sanctum', 'verified']], function () {
         Route::get('dashboard', function () {

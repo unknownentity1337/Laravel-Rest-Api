@@ -1,7 +1,7 @@
 <div id="form-create">
     <x-jet-form-section :submit="$action" class="mb-4">
         <x-slot name="title">
-            {{ __('Changelog') }}
+            {{ __('Category') }}
         </x-slot>
 
         <x-slot name="description">
@@ -13,22 +13,20 @@
                 <x-jet-label for="title" value="{{ __('Title') }}" />
                 <small>Title</small>
                 <x-jet-input id="title" type="text" class="mt-1 block w-full form-control shadow-none"
-                    wire:model.defer="changelog.title" />
-                <x-jet-input-error for="changelog.title" class="mt-2" />
+                    wire:model.defer="category.title" />
+                <x-jet-input-error for="category.title" class="mt-2" />
             </div>
 
             <div class="form-group col-span-6 sm:col-span-5">
-                <x-jet-label for="content" value="{{ __('Description') }}" />
-                <small>Description</small>
-                <textarea wire:model.defer="changelog.content" class="mt-1 block w-full form-control shadow-none" id="content"
-                    name="changelog.content">
-                        @if ($action == 'updateChangelog')
-{!! $changelog->content !!}
-@endif
-                    </textarea>
+                <x-jet-label for="content" value="{{ __('Slug') }}" />
+                <small>Slug</small>
+                {{-- @if ($action == 'updateCategory') --}}
+                <x-jet-input id="slug" type="text" class="mt-1 block w-full form-control shadow-none"
+                    wire:model.defer="category.slug" />
+                <x-jet-input-error for="category.slug" class="mt-2" />
+                {{-- @endif --}}
             </div>
         </x-slot>
-
         <x-slot name="actions">
             <x-jet-action-message class="mr-3" on="saved">
                 {{ __($button['submit_response']) }}
@@ -43,17 +41,3 @@
 
     <x-notify-message on="saved" type="success" :message="__($button['submit_response_notyf'])" />
 </div>
-
-<script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
-<script>
-    ClassicEditor
-        .create(document.querySelector('#content'))
-        .then(editor => {
-            editor.model.document.on('change:data', () => {
-                @this.set('changelog.content', editor.getData());
-            })
-        })
-        .catch(error => {
-            console.error(error);
-        });
-</script>

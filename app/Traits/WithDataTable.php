@@ -27,6 +27,7 @@ trait WithDataTable
                     ])
                 ];
                 break;
+
             case 'changelog':
                 $changelogs = $this->model::search($this->search)
                     ->orderBy($this->sortField, $this->sortAsc ? 'desc' : 'asc')
@@ -39,6 +40,23 @@ trait WithDataTable
                         'href' => [
                             'create_new' => route('changelog.new'),
                             'create_new_text' => 'Create New Changelog',
+                        ]
+                    ])
+                ];
+                break;
+
+            case 'category':
+                $categorys = $this->model::search($this->search)
+                    ->orderBy($this->sortField, $this->sortAsc ? 'desc' : 'asc')
+                    ->paginate($this->perPage);
+
+                return [
+                    "view" => 'livewire.table.category',
+                    "categorys" => $categorys,
+                    "data" => array_to_object([
+                        'href' => [
+                            'create_new' => route('category.new'),
+                            'create_new_text' => 'Create New Category',
                         ]
                     ])
                 ];

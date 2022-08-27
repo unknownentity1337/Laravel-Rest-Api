@@ -10,14 +10,17 @@ $links = [
             [
                 'section_text' => 'User',
                 'section_list' => [['href' => 'user', 'text' => 'Data User'], ['href' => 'user.new', 'text' => 'Create User']],
+                'section_icon' => 'fas fa-user',
             ],
             [
                 'section_text' => 'Changelog',
                 'section_list' => [['href' => 'changelog', 'text' => 'Data Changelog'], ['href' => 'changelog.new', 'text' => 'Create Changelog']],
+                'section_icon' => 'fas fa-sync',
             ],
             [
-                'section_text' => 'Docs',
-                'section_list' => [['href' => 'docs', 'text' => 'Data Docs'], ['href' => 'docs.new', 'text' => 'Create Docs']],
+                'section_text' => 'Category',
+                'section_list' => [['href' => 'category', 'text' => 'Data Category'], ['href' => 'category.new', 'text' => 'Create Category']],
+                'section_icon' => 'fas fa-book-open',
             ],
         ],
         'text' => 'Admin',
@@ -58,7 +61,8 @@ $navigation_links = array_to_object($links);
 
                         <li class="dropdown {{ $is_active ? 'active' : '' }}">
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
-                                    class="fas fa-chart-bar"></i> <span>{{ $section->section_text }}</span></a>
+                                    class="{{ $section->section_icon }}"></i>
+                                <span>{{ $section->section_text }}</span></a>
                             <ul class="dropdown-menu">
                                 @foreach ($section->section_list as $child)
                                     <li class="{{ Request::routeIs($child->href) ? 'active' : '' }}"><a class="nav-link"

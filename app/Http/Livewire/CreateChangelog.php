@@ -17,7 +17,10 @@ class CreateChangelog extends Component
         $rules = ($this->action == "updateChangelog") ? [
             'changelog.title' => 'required',
             'changelog.content' => 'required'
-        ] : ['changelog.title' => 'required'];
+        ] : [
+            'changelog.title' => 'required',
+            'changelog.content' => 'required'
+        ];
 
         return $rules;
     }
