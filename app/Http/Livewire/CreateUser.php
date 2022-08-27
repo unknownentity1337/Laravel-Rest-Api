@@ -24,28 +24,27 @@ class CreateUser extends Component
 
         return array_merge([
             'user.name' => 'required|min:3',
-            'user.email' => 'required|email|unique:users,email'
+            'user.email' => 'required|email|unique:users,email',
+            'user.status' => 'required',
+            'user.limit' => 'required',
         ], $rules);
     }
 
-    public function createUser ()
+    public function createUser()
     {
         $this->resetErrorBag();
         $this->validate();
-
         $password = $this->user['password'];
-
-        if ( !empty($password) ) {
+        if (!empty($password)) {
             $this->user['password'] = Hash::make($password);
         }
-
+        // dd($this->user);
         User::create($this->user);
-
         $this->emit('saved');
         $this->reset('user');
     }
 
-    public function updateUser ()
+    public function updateUser()
     {
         $this->resetErrorBag();
         $this->validate();
@@ -55,12 +54,14 @@ class CreateUser extends Component
             ->update([
                 "name" => $this->user->name,
                 "email" => $this->user->email,
+                "limit" => $this->user->limit,
+                "status" => $this->user->status,
             ]);
 
         $this->emit('saved');
     }
 
-    public function mount ()
+    public function mount()
     {
         if (!$this->user && $this->userId) {
             $this->user = User::find($this->userId);

@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->integer('role')->default(0);
             $table->string('token')->default('');
-            $table->enum('status', ['free', 'premium', 'vip']);
+            $table->enum('status', ['Free', 'Premium', 'Vip']);
             $table->integer('limit')->default(100);
             $table->rememberToken();
             $table->text('profile_photo_path')->nullable();

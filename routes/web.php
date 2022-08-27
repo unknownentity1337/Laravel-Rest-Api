@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ApiController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ChangelogController;
@@ -39,6 +40,11 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
         Route::get('category', [CategoryController::class, "view"])->name('category');
         Route::view('category/new', "pages.category.category-new")->name('category.new');
         Route::view('category/edit/{categoryId}', "pages.category.category-edit")->name('category.edit');
+
+        // Route Category
+        Route::get('api', [ApiController::class, "view"])->name('api');
+        Route::view('api/new', "pages.api.api-new")->name('api.new');
+        Route::view('api/edit/{apiId}', "pages.api.api-edit")->name('api.edit');
     });
     Route::group(["middleware" => ['auth:sanctum', 'verified']], function () {
         Route::get('dashboard', function () {

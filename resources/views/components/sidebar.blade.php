@@ -22,7 +22,13 @@ $links = [
                 'section_list' => [['href' => 'category', 'text' => 'Data Category'], ['href' => 'category.new', 'text' => 'Create Category']],
                 'section_icon' => 'fas fa-book-open',
             ],
+            [
+                'section_text' => 'Api',
+                'section_list' => [['href' => 'api', 'text' => 'Data Api'], ['href' => 'api.new', 'text' => 'Create Api']],
+                'section_icon' => 'fas fa-fire',
+            ],
         ],
+
         'text' => 'Admin',
         'is_multi' => true,
     ],

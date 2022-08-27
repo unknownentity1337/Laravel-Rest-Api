@@ -4,4 +4,4 @@
 - [x] Crud User 
 - [ ] Crud Docs
 - [x] Crud Changelog
-
+- [x] Crud Category
