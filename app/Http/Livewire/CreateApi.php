@@ -43,8 +43,8 @@ class CreateApi extends Component
         Api::query()
             ->where('id', $this->apiId)
             ->update([
-                "title" => $this->api->title,
                 "category_id" => $this->api->category_id,
+                "title" => $this->api->title,
                 "method" => $this->api->method,
                 "status" => $this->api->status,
                 "docs_id" => $this->api->docs_id

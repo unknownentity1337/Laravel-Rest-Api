@@ -19,9 +19,9 @@
 
 
             <div class="form-group col-span-6 sm:col-span-5">
-                <x-jet-label for="Category" value="{{ __('Category') }}" />
+                <x-jet-label for="category" value="{{ __('Category') }}" />
                 <small>Api Category</small>
-                <select wire:model.defer="api.category" id="status"
+                <select wire:model.defer="api.category_id" id="category_id"
                     class="mt-1 block w-full form-control shadow-none">
                     @if ($action == 'createApi')
                         <option>-- Select Category --</option>
@@ -39,15 +39,14 @@
                         @endforelse
                     @endif
                 </select>
-                <x-jet-input-error for="api.category" class="mt-2" />
+                <x-jet-input-error for="api.category_id" class="mt-2" />
             </div>
 
             <div class="form-group col-span-6 sm:col-span-5">
-                <x-jet-label for="Method" value="{{ __('Method') }}" />
+                <x-jet-label for="method" value="{{ __('Method') }}" />
                 <small>Api Method</small>
                 <x-jet-input id="method" type="text" class="mt-1 block w-full form-control shadow-none"
                     wire:model.defer="api.method" />
-                <x-jet-input-error for="api.method" class="mt-2" />
                 <x-jet-input-error for="api.method" class="mt-2" />
             </div>
 
@@ -64,7 +63,7 @@
                         <option value="0" {{ $api->status == '1' ? 'selected' : '' }}>Deactive</option>
                     @endif
                 </select>
-                <x-jet-input-error for="api.category" class="mt-2" />
+                <x-jet-input-error for="api.status" class="mt-2" />
             </div>
 
             <div class="form-group col-span-6 sm:col-span-5">
@@ -72,7 +71,6 @@
                 <small>Api Docs</small>
                 <x-jet-input id="docs" type="text" class="mt-1 block w-full form-control shadow-none"
                     wire:model.defer="api.docs_id" />
-                <x-jet-input-error for="api.docs_id" class="mt-2" />
                 <x-jet-input-error for="api.docs_id" class="mt-2" />
             </div>
 
