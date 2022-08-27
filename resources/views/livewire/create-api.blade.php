@@ -73,13 +73,13 @@
                 <x-jet-input-error for="api.status" class="mt-2" />
             </div>
 
-            <div class="form-group col-span-6 sm:col-span-5">
+            {{-- <div class="form-group col-span-6 sm:col-span-5">
                 <x-jet-label for="docs" value="{{ __('Docs') }}" />
                 <small>Api Docs</small>
                 <x-jet-input id="docs" type="text" class="mt-1 block w-full form-control shadow-none"
                     wire:model.defer="api.docs_id" />
                 <x-jet-input-error for="api.docs_id" class="mt-2" />
-            </div>
+            </div> --}}
 
 
         </x-slot>

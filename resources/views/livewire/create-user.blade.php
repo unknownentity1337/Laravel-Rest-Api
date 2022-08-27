@@ -26,11 +26,18 @@
             </div>
 
             <div class="form-group col-span-6 sm:col-span-5">
-                <x-jet-label for="limit" value="{{ __('Limit') }}" />
-                <small>User Limit</small>
-                <x-jet-input id="limit" type="text" class="mt-1 block w-full form-control shadow-none"
-                    wire:model.defer="user.limit" />
-                <x-jet-input-error for="user.limit" class="mt-2" />
+                <x-jet-label for="limit_max" value="{{ __('Limit Max') }}" />
+                <small>User Limit Max</small>
+                <x-jet-input id="limit_max" type="text" class="mt-1 block w-full form-control shadow-none"
+                    wire:model.defer="user.limit_max" />
+                <x-jet-input-error for="user.limit_max" class="mt-2" />
+            </div>
+
+            <div class="form-group col-span-6 sm:col-span-5">
+                <x-jet-label for="limit_count" value="{{ __('Limit Count') }}" />
+                <small>User Limit Count</small>
+                <x-jet-input id="limit_count" type="text" class="mt-1 block w-full form-control shadow-none"
+                    wire:model.defer="user.limit_count" />
             </div>
 
             <div class="form-group col-span-6 sm:col-span-5">
@@ -40,14 +47,14 @@
                     class="mt-1 block w-full form-control shadow-none">
                     @if ($action == 'createUser')
                         <option>-- Select Status --</option>
-                        <option value="free">Free</option>
-                        <option value="premium">Premium</option>
-                        <option value="vip">Vip</option>
+                        <option value="Free">Free</option>
+                        <option value="Premium">Premium</option>
+                        <option value="Vip">Vip</option>
                     @else
-                        <option value="free" {{ $this->user->status == 'free' ? 'selected' : '' }}>Free</option>
-                        <option value="premium" {{ $this->user->status == 'premium' ? 'selected' : '' }}>Premium
+                        <option value="Free" {{ $this->user->status == 'Free' ? 'selected' : '' }}>Free</option>
+                        <option value="Premium" {{ $this->user->status == 'Premium' ? 'selected' : '' }}>Premium
                         </option>
-                        <option value="vip" {{ $this->user->status == 'vip' ? 'selected' : '' }}>Vip</option>
+                        <option value="Vip" {{ $this->user->status == 'Vip' ? 'selected' : '' }}>Vip</option>
                     @endif
                 </select>
                 <x-jet-input-error for="user.status" class="mt-2" />

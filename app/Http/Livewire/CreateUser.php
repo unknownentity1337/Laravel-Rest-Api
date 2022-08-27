@@ -26,7 +26,8 @@ class CreateUser extends Component
             'user.name' => 'required|min:3',
             'user.email' => 'required|email|unique:users,email',
             'user.status' => 'required',
-            'user.limit' => 'required',
+            'user.limit_max' => 'required',
+            'user.limit_count' => 'required',
         ], $rules);
     }
 
@@ -54,8 +55,10 @@ class CreateUser extends Component
             ->update([
                 "name" => $this->user->name,
                 "email" => $this->user->email,
-                "limit" => $this->user->limit,
                 "status" => $this->user->status,
+                "limit_max" => $this->user->limit_max,
+                "limit_count" => $this->user->limit_count,
+                "expired_at" => $this->user->expired
             ]);
 
         $this->emit('saved');

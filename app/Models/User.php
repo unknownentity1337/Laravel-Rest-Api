@@ -26,10 +26,12 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'limit',
         'email',
         'status',
+        'limit_max',
+        'limit_count',
         'password',
+        'expired_at'
     ];
 
     /**
@@ -61,6 +63,8 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    protected $dates = ['expired_at'];
 
     /**
      * Search query in multiple whereOr

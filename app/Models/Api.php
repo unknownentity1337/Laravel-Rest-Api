@@ -9,7 +9,14 @@ class Api extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description', 'category_id', 'method', 'status', 'docs_id'];
+    protected $fillable = [
+        'title',
+        'description',
+        'category_id',
+        'method',
+        'status',
+        // 'docs_id'
+    ];
 
     public function category()
     {

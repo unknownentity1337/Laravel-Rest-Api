@@ -19,13 +19,15 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->integer('role')->default(0);
-            $table->string('token')->default('');
+            $table->string('api_key')->default('');
             $table->enum('status', ['Free', 'Premium', 'Vip']);
-            $table->integer('limit')->default(100);
+            $table->integer('limit_max')->default(100);
+            $table->integer('limit_count')->default(0);
             $table->rememberToken();
             $table->text('profile_photo_path')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
+            $table->timestamp('expired_at')->nullable();
         });
     }
 

@@ -14,9 +14,13 @@
                         Email
                         @include('components.sort-icon', ['field' => 'email'])
                     </a></th>
-                <th><a wire:click.prevent="sortBy('limit')" role="button" href="#">
-                        Limit
-                        @include('components.sort-icon', ['field' => 'limit'])
+                <th><a wire:click.prevent="sortBy('limit_max')" role="button" href="#">
+                        Limit Max
+                        @include('components.sort-icon', ['field' => 'limit_max'])
+                    </a></th>
+                <th><a wire:click.prevent="sortBy('limit_count')" role="button" href="#">
+                        Limit Count
+                        @include('components.sort-icon', ['field' => 'limit_count'])
                     </a></th>
                 <th><a wire:click.prevent="sortBy('status')" role="button" href="#">
                         Status
@@ -25,6 +29,10 @@
                 <th><a wire:click.prevent="sortBy('created_at')" role="button" href="#">
                         Created At
                         @include('components.sort-icon', ['field' => 'created_at'])
+                    </a></th>
+                <th><a wire:click.prevent="sortBy('expired_at')" role="button" href="#">
+                        Expired At
+                        @include('components.sort-icon', ['field' => 'expired_at'])
                     </a></th>
                 <th>Action</th>
             </tr>
@@ -35,9 +43,11 @@
                     <td>{{ $user->id }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
-                    <td>{{ $user->limit }}</td>
+                    <td>{{ $user->limit_max }}</td>
+                    <td>{{ $user->limit_count }}</td>
                     <td>{{ $user->status }}</td>
                     <td>{{ $user->created_at->format('d M Y H:i') }}</td>
+                    <td>{{ $user->expired_at ? $user->expired_at->format('d M Y H:i') : 'False' }} </td>
                     <td class="whitespace-no-wrap row-action--icon">
                         <a role="button" href="{{ route('user.edit', ['userId' => $user->id]) }}" class="mr-3"><i
                                 class="fa fa-16px fa-pen"></i></a>

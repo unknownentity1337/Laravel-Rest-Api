@@ -19,4 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('anime', [AnimeController::class, 'otaku']);
+Route::group(['middleware' => 'ApiLimit:Free'], function () {
+    route::get('anime', [AnimeController::class, 'otaku']);
+});

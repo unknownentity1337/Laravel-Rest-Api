@@ -23,7 +23,7 @@ class CreateApi extends Component
             'api.category_id' => 'required',
             'api.method' => 'required',
             'api.status' => 'required',
-            'api.docs_id' => 'required'
+            // 'api.docs_id' => 'required'
         ];
         return $rules;
     }
@@ -49,7 +49,7 @@ class CreateApi extends Component
                 "category_id" => $this->api->category_id,
                 "method" => $this->api->method,
                 "status" => $this->api->status,
-                "docs_id" => $this->api->docs_id
+                // "docs_id" => $this->api->docs_id
             ]);
         $this->emit('saved');
     }
