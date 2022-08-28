@@ -28,7 +28,7 @@ class ApiLimit
         if ($apikey == "") {
             return response()->json(
                 [
-                    "status" => "err",
+                    "status" => false,
                     "msg" => "Fill Apikey Parameter"
                 ],
                 400
@@ -40,8 +40,8 @@ class ApiLimit
                         if ($count >= $max) {
                             return response()->json(
                                 [
-                                    "status" => "err",
-                                    "msg" => "Max Limit Reached"
+                                    "status" => false,
+                                    "msg" => "Limit Key Reached , Please Wait Until Reset By System"
                                 ],
                                 500
                             );
@@ -57,8 +57,8 @@ class ApiLimit
                         if ($now >= $expired) {
                             return response()->json(
                                 [
-                                    "status" => "err",
-                                    "msg" => "Expired"
+                                    "status" => false,
+                                    "msg" => "Premium / Vip Acc Was Expired , Please Contact Admin For Renew , Premium / Vip User Features Now Cannot Be Used"
                                 ],
                                 500
                             );
@@ -66,8 +66,8 @@ class ApiLimit
                             if ($count >= $max) {
                                 return response()->json(
                                     [
-                                        "status" => "err",
-                                        "msg" => "Max Limit Reached"
+                                        "status" => false,
+                                        "msg" => "Limit Key Reached , Please Wait Until Reset By System"
                                     ],
                                     500
                                 );
@@ -84,7 +84,7 @@ class ApiLimit
                 } else {
                     return response()->json(
                         [
-                            "status" => "err",
+                            "status" => false,
                             "msg" => "Only For Premium / Vip User"
                         ],
                         403
@@ -93,7 +93,7 @@ class ApiLimit
             } else {
                 return response()->json(
                     [
-                        "status" => "err",
+                        "status" => false,
                         "msg" => "Key Not Found"
                     ],
                     404

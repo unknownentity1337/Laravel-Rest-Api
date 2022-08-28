@@ -27,7 +27,8 @@ class CreateUser extends Component
             'user.email' => 'required|email|unique:users,email',
             'user.status' => 'required',
             'user.limit_max' => 'required',
-            'user.limit_count' => 'required',
+            'user.expired_at' => ''
+            // 'user.limit_count' => 'required',
         ], $rules);
     }
 
@@ -36,10 +37,10 @@ class CreateUser extends Component
         $this->resetErrorBag();
         $this->validate();
         $password = $this->user['password'];
+
         if (!empty($password)) {
             $this->user['password'] = Hash::make($password);
         }
-        // dd($this->user);
         User::create($this->user);
         $this->emit('saved');
         $this->reset('user');
@@ -49,7 +50,9 @@ class CreateUser extends Component
     {
         $this->resetErrorBag();
         $this->validate();
-
+        if ($this->user->expired_at == "NULL") {
+            $this->user['expired_at'] = NULL;
+        }
         User::query()
             ->where('id', $this->userId)
             ->update([
@@ -57,8 +60,8 @@ class CreateUser extends Component
                 "email" => $this->user->email,
                 "status" => $this->user->status,
                 "limit_max" => $this->user->limit_max,
-                "limit_count" => $this->user->limit_count,
-                "expired_at" => $this->user->expired
+                // "limit_count" => $this->user->limit_count,
+                "expired_at" =>  $this->user->expired_at
             ]);
 
         $this->emit('saved');
@@ -68,8 +71,8 @@ class CreateUser extends Component
     {
         if (!$this->user && $this->userId) {
             $this->user = User::find($this->userId);
+            $this->user['expired_at'] = $this->user->expired_at ? $this->user->expired_at : 'False';
         }
-
         $this->button = create_button($this->action, "User");
     }
 

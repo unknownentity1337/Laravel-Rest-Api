@@ -1,3 +1,4 @@
+@section('title', 'Edit Changelog')
 <x-app-layout>
     <x-slot name="header_content">
         <h1>{{ __('Edit Changelog') }}</h1>

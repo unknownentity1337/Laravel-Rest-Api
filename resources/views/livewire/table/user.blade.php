@@ -47,7 +47,8 @@
                     <td>{{ $user->limit_count }}</td>
                     <td>{{ $user->status }}</td>
                     <td>{{ $user->created_at->format('d M Y H:i') }}</td>
-                    <td>{{ $user->expired_at ? $user->expired_at->format('d M Y H:i') : 'False' }} </td>
+                    <td>{{ $user->expired_at ? Carbon\Carbon::parse($user->expired_at)->format('d M Y H:i') : 'False' }}
+                    </td>
                     <td class="whitespace-no-wrap row-action--icon">
                         <a role="button" href="{{ route('user.edit', ['userId' => $user->id]) }}" class="mr-3"><i
                                 class="fa fa-16px fa-pen"></i></a>

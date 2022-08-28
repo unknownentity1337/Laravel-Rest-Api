@@ -1,3 +1,4 @@
+@section('title', 'Forgot Password')
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
@@ -21,7 +22,8 @@
 
             <div class="block">
                 <x-jet-label value="{{ __('Email') }}" />
-                <x-jet-input class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                <x-jet-input class="block mt-1 w-full" type="email" name="email" :value="old('email')" required
+                    autofocus />
             </div>
 
             <div class="flex items-center justify-end mt-4">

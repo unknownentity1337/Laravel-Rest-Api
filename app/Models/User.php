@@ -29,7 +29,7 @@ class User extends Authenticatable
         'email',
         'status',
         'limit_max',
-        'limit_count',
+        // 'limit_count',
         'password',
         'expired_at'
     ];
@@ -52,7 +52,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'email_verified_at' => 'datetime'
     ];
 
     /**
@@ -64,7 +64,7 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    protected $dates = ['expired_at'];
+    // protected $dates = ['expired_at'];
 
     /**
      * Search query in multiple whereOr

@@ -1,3 +1,4 @@
+@section('title', 'Admin Dashboard')
 <x-app-layout>
     <x-slot name="header_content">
         <h1>Dashboard</h1>
@@ -8,4 +9,5 @@
         </div>
     </x-slot>
     <livewire:admin.dashboard />
+    <x-jet-welcome />
 </x-app-layout>

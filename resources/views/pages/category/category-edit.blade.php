@@ -1,3 +1,4 @@
+@section('title', 'Edit Category')
 <x-app-layout>
     <x-slot name="header_content">
         <h1>{{ __('Edit Category') }}</h1>
