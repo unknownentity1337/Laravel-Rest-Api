@@ -31,7 +31,8 @@ class User extends Authenticatable
         'limit_max',
         // 'limit_count',
         'password',
-        'expired_at'
+        'is_expired',
+        'expired_at',
     ];
 
     /**

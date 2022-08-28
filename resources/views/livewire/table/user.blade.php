@@ -34,6 +34,10 @@
                         Expired At
                         @include('components.sort-icon', ['field' => 'expired_at'])
                     </a></th>
+                <th><a wire:click.prevent="sortBy('is_expired')" role="button" href="#">
+                        Expired
+                        @include('components.sort-icon', ['field' => 'is_expired'])
+                    </a></th>
                 <th>Action</th>
             </tr>
         </x-slot>
@@ -49,6 +53,7 @@
                     <td>{{ $user->created_at->format('d M Y H:i') }}</td>
                     <td>{{ $user->expired_at ? Carbon\Carbon::parse($user->expired_at)->format('d M Y H:i') : 'False' }}
                     </td>
+                    <td>{{ $user->is_expired ? 'Yes' : 'No' }}</td>
                     <td class="whitespace-no-wrap row-action--icon">
                         <a role="button" href="{{ route('user.edit', ['userId' => $user->id]) }}" class="mr-3"><i
                                 class="fa fa-16px fa-pen"></i></a>

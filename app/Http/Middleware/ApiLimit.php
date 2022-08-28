@@ -23,7 +23,7 @@ class ApiLimit
         $status = $key->status;
         $count = $key->limit_count;
         $max = $key->limit_max;
-        $expired = $key->expired_at->toDateString();
+        $expired = $key->expired_at;
         $now = now()->toDateString();
         if ($apikey == "") {
             return response()->json(
@@ -55,10 +55,19 @@ class ApiLimit
                         }
                     } else {
                         if ($now >= $expired) {
+
+                            User::where('api_key', $apikey)->update(
+                                [
+                                    "status" => "Free",
+                                    "is_expired" => 0,
+                                    "limit_max" => env("LIMIT_FREE_REQUEST")
+                                ]
+                            );
+
                             return response()->json(
                                 [
                                     "status" => false,
-                                    "msg" => "Premium / Vip Acc Was Expired , Please Contact Admin For Renew , Premium / Vip User Features Now Cannot Be Used"
+                                    "msg" => "Premium / Vip Acc Was Expired , Please Contact Admin For Renew , Premium / Vip User Features Now Cannot Be Used & Automatic Change Plan To Free"
                                 ],
                                 500
                             );

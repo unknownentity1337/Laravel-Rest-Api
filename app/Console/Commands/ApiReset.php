@@ -39,7 +39,46 @@ class ApiReset extends Command
      */
     public function handle()
     {
-        User::where('status', 'Free')->orWhere('status', 'Premium')->orWhere('status', 'Vip')->update(["limit_count" => 0]);
-        $this->info("Successfully Reset Limit");
+        // Reset Limit Count
+        User::where('status', 'Free')
+            ->orWhere('status', 'Premium')
+            ->orWhere('status', 'Vip')
+            ->update(['limit_count' => 0]);
+
+        // Free
+        User::where('status', 'Free')
+            ->update(
+                [
+                    'limit_max' => env('LIMIT_FREE_REQUEST'),
+                    'is_expired' => 0,
+                    'expired_at' => NULL
+                ]
+            );
+
+        // Premium
+        User::where('status', 'Premium')
+            ->update(
+                [
+                    'limit_max' => env('LIMIT_PREMIUM_REQUEST')
+                ]
+            );
+
+        // Vip 
+        User::where('status', 'Vip')
+            ->update(
+                [
+                    'limit_max' => env('LIMIT_VIP_REQUEST')
+                ]
+            );
+
+        // All
+        User::where('is_expired', 1)
+            ->update(
+                [
+                    'limit_max' => env('LIMIT_FREE_REQUEST')
+                ]
+            );
+
+        $this->info('Successfully Reset Limit');
     }
 }

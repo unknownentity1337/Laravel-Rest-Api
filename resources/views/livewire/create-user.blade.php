@@ -26,12 +26,25 @@
             </div>
 
             <div class="form-group col-span-6 sm:col-span-5">
+                <x-jet-label for="is_expired" value="{{ __('Was Expired ?') }}" />
+                <small>User Expired</small>
+                <select wire:model.defer="user.is_expired" id="is_expired"
+                    class="mt-1 block w-full form-control shadow-none">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+                <x-jet-input-error for="user.is_expired" class="mt-2" />
+            </div>
+
+            {{-- @if ($action == 'createuser')
+            <div class="form-group col-span-6 sm:col-span-5">
                 <x-jet-label for="limit_max" value="{{ __('Limit Max') }}" />
                 <small>User Limit Max</small>
                 <x-jet-input id="limit_max" type="number" class="mt-1 block w-full form-control shadow-none"
                     wire:model.defer="user.limit_max" />
                 <x-jet-input-error for="user.limit_max" class="mt-2" />
             </div>
+        @endif --}}
 
             {{-- <div class="form-group col-span-6 sm:col-span-5">
                 <x-jet-label for="limit_count" value="{{ __('Limit Count') }}" />
@@ -43,8 +56,13 @@
 
             <div class="form-group col-span-6 sm:col-span-5">
                 <x-jet-label for="expired" value="{{ __('Expired At') }}" />
-                <small>Expired At :
-                    {{ $this->user->expired_at ? Carbon\Carbon::parse($this->user->expired_at)->format('d M Y H:i') : 'False' }}</small>
+                @if ($action == 'updateUser')
+                    <small>Expired At :
+                        {{ $this->user->expired_at ? $this->user->expired_at : 'False' }}
+                    </small>
+                @else
+                    <small>Expired At</small>
+                @endif
                 <select wire:model.defer="user.expired_at" class="mt-1 block w-full form-control shadow-none"
                     id="expired">
                     <option value="NULL">False</option>

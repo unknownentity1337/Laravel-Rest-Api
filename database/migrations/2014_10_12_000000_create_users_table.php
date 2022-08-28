@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->enum('status', ['Free', 'Premium', 'Vip']);
             $table->integer('limit_max')->default(100);
             $table->integer('limit_count')->default(0);
+            $table->integer('is_expired')->default(0);
             $table->rememberToken();
             $table->text('profile_photo_path')->nullable();
             $table->timestamp('email_verified_at')->nullable();
