@@ -9,7 +9,7 @@ class UserController extends Controller
 {
     public function view()
     {
-        return view('pages.user.user-data', [
+        return view('pages.admin.user.user-data', [
             'user' => User::class
         ]);
     }

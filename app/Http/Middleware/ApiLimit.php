@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Total;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -18,96 +19,77 @@ class ApiLimit
      */
     public function handle(Request $request, Closure $next, ...$stats)
     {
-        $apikey = $request->apikey;
-        $key = User::where('api_key', $apikey)->first();
-        $status = $key->status;
-        $count = $key->limit_count;
-        $max = $key->limit_max;
-        $expired = $key->expired_at;
-        $now = now()->toDateString();
-        if ($apikey == "") {
-            return response()->json(
-                [
-                    "status" => false,
-                    "msg" => "Fill Apikey Parameter"
-                ],
-                400
-            );
-        } else {
-            if ($key) {
+        $apikey = $request->header('X-API-KEY');
+        if ($request->hasHeader('X-API-KEY')) {
+            $key = User::getByKey($apikey);
+            $valid = User::isValidKey($apikey);
+            if ($valid) {
+                $status = $key->status;
+                $count = $key->limit_count;
+                $max = $key->limit_max;
+                $expired = $key->expired_at;
+                $now = now()->toDateString();
                 if (in_array($status, $stats)) {
                     if ($status == "Free") {
                         if ($count >= $max) {
-                            return response()->json(
-                                [
-                                    "status" => false,
-                                    "msg" => "Limit Key Reached , Please Wait Until Reset By System"
-                                ],
-                                500
-                            );
+                            return response()->json([
+                                "status" => false,
+                                "msg" => "Limit Key Reached , Please Wait Reset Every Day"
+                            ], 500, ["Application/json"]);
                         } else {
-                            User::where('api_key', $apikey)->update(
-                                [
-                                    "limit_count" => DB::raw('limit_count+1')
-                                ]
-                            );
+                            User::where('api_key', $apikey)->update([
+                                "limit_count" => DB::raw('limit_count+1')
+                            ]);
+                            Total::where('id', 1)->update([
+                                "total_request" => DB::raw('total_request+1'),
+                                "today_request" =>  DB::raw('today_request+1')
+                            ]);
                             return $next($request);
                         }
                     } else {
                         if ($now >= $expired) {
-
-                            User::where('api_key', $apikey)->update(
-                                [
-                                    "status" => "Free",
-                                    "is_expired" => 0,
-                                    "limit_max" => env("LIMIT_FREE_REQUEST")
-                                ]
-                            );
-
-                            return response()->json(
-                                [
-                                    "status" => false,
-                                    "msg" => "Premium / Vip Acc Was Expired , Please Contact Admin For Renew , Premium / Vip User Features Now Cannot Be Used & Automatic Change Plan To Free"
-                                ],
-                                500
-                            );
+                            User::where('api_key', $apikey)->update([
+                                "status" => "Free",
+                                "is_expired" => 0,
+                                "limit_max" => env("LIMIT_FREE_REQUEST")
+                            ]);
+                            return response()->json([
+                                "status" => false,
+                                "msg" => "Premium / Vip Acc Was Expired , Please Contact Admin For Renew , Premium / Vip User Features Now Cannot Be Used & Automatic Change Plan To Free"
+                            ], 500, ["Application/json"]);
                         } else {
                             if ($count >= $max) {
-                                return response()->json(
-                                    [
-                                        "status" => false,
-                                        "msg" => "Limit Key Reached , Please Wait Until Reset By System"
-                                    ],
-                                    500
-                                );
+                                return response()->json([
+                                    "status" => false,
+                                    "msg" => "Limit Key Reached , Please Wait Reset Every Day"
+                                ], 500);
                             } else {
-                                User::where('api_key', $apikey)->update(
-                                    [
-                                        "limit_count" => DB::raw('limit_count+1')
-                                    ]
-                                );
+                                User::where('api_key', $apikey)->update(["limit_count" => DB::raw('limit_count+1')]);
+                                Total::where('id', 1)->update([
+                                    "total_request" => DB::raw('total_request+1'),
+                                    "today_request" =>  DB::raw('today_request+1')
+                                ]);
                                 return $next($request);
                             }
                         }
                     }
                 } else {
-                    return response()->json(
-                        [
-                            "status" => false,
-                            "msg" => "Only For Premium / Vip User"
-                        ],
-                        403
-                    );
+                    return response()->json([
+                        "status" => false,
+                        "msg" => "Only For Premium / Vip User"
+                    ], 403, ["Application/json"]);
                 }
             } else {
-                return response()->json(
-                    [
-                        "status" => false,
-                        "msg" => "Key Not Found"
-                    ],
-                    404
-                );
+                return response()->json([
+                    "status" => false,
+                    "msg" => "Apikey Not Found"
+                ], 404, ["Application/json"]);
             }
+        } else {
+            return response()->json([
+                "status" => false,
+                "msg" => "Access Denied , X-API-KEY Parameter Cannot Be Empty"
+            ], 403, ["Application/json"]);
         }
     }
 }

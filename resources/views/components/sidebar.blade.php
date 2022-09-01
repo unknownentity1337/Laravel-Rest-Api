@@ -1,48 +1,27 @@
-@php
+{{-- @php
 $links = [
-    [
-        'href' => 'dashboard',
-        'text' => 'Dashboard',
-        'is_multi' => false,
-    ],
     [
         'href' => [
             [
-                'section_text' => 'User',
-                'section_list' => [['href' => 'user', 'text' => 'Data User'], ['href' => 'user.new', 'text' => 'Create User']],
-                'section_icon' => 'fas fa-user',
-            ],
-            [
-                'section_text' => 'Changelog',
-                'section_list' => [['href' => 'changelog', 'text' => 'Data Changelog'], ['href' => 'changelog.new', 'text' => 'Create Changelog']],
-                'section_icon' => 'fas fa-sync',
-            ],
-            [
-                'section_text' => 'Category',
-                'section_list' => [['href' => 'category', 'text' => 'Data Category'], ['href' => 'category.new', 'text' => 'Create Category']],
-                'section_icon' => 'fas fa-book-open',
-            ],
-            [
-                'section_text' => 'Api',
-                'section_list' => [['href' => 'api', 'text' => 'Data Api'], ['href' => 'api.new', 'text' => 'Create Api']],
-                'section_icon' => 'fas fa-fire',
+                'section_text' => 'Feature',
+                'section_list' => [['href' => 'user.dashboard', 'text' => 'Dashboard'], ['href' => 'user.changelog', 'text' => 'Changelog'], ['href' => 'user.pricing', 'text' => 'Pricing']],
+                'section_icon' => 'fas fa-cloud',
             ],
         ],
-
-        'text' => 'Admin',
+        'text' => 'Api Azathoth',
         'is_multi' => true,
     ],
 ];
 $navigation_links = array_to_object($links);
-@endphp
+@endphp --}}
 
-<div class="main-sidebar">
+{{-- <div class="main-sidebar">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="{{ route('dashboard') }}">Dashboard</a>
+            <a href="{{ route('user.dashboard') }}">Api Azathoth</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="{{ route('dashboard') }}">
+            <a href="{{ route('user.dashboard') }}">
                 <img class="d-inline-block" width="32px" height="30.61px" src="" alt="">
             </a>
         </div>
@@ -52,7 +31,7 @@ $navigation_links = array_to_object($links);
                 @if (!$link->is_multi)
                     <li class="{{ Request::routeIs($link->href) ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route($link->href) }}"><i
-                                class="fas fa-fire"></i><span>Dashboard</span></a>
+                                class="{{ $link->icon }}"></i><span>{{ $link->text }}</span></a>
                     </li>
                 @else
                     @foreach ($link->href as $section)
@@ -64,15 +43,15 @@ $navigation_links = array_to_object($links);
                                 ->toArray();
                             $is_active = in_array(true, $routes);
                         @endphp
-
                         <li class="dropdown {{ $is_active ? 'active' : '' }}">
-                            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
-                                    class="{{ $section->section_icon }}"></i>
+                            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"
+                                aria-expanded="false"><i class="{{ $section->section_icon }}"></i>
                                 <span>{{ $section->section_text }}</span></a>
                             <ul class="dropdown-menu">
                                 @foreach ($section->section_list as $child)
-                                    <li class="{{ Request::routeIs($child->href) ? 'active' : '' }}"><a class="nav-link"
-                                            href="{{ route($child->href) }}">{{ $child->text }}</a></li>
+                                    <li class="{{ Request::routeIs($child->href) ? 'active' : '' }}"><a
+                                            class="nav-link" href="{{ route($child->href) }}">{{ $child->text }}</a>
+                                    </li>
                                 @endforeach
                             </ul>
                         </li>
@@ -80,5 +59,36 @@ $navigation_links = array_to_object($links);
                 @endif
             </ul>
         @endforeach
+    </aside>
+</div> --}}
+<div class="main-sidebar">
+    <aside id="sidebar-wrapper">
+        <div class="sidebar-brand">
+            <a href="{{ route('user.dashboard') }}">Api Azathoth</a>
+        </div>
+        <div class="sidebar-brand sidebar-brand-sm">
+            <a href="{{ route('user.dashboard') }}">
+                <img class="d-inline-block" width="32px" height="30.61px" src="" alt="">
+            </a>
+        </div>
+        <ul class="sidebar-menu">
+            <li class="menu-header">Dashboard</li>
+            <li class="{{ Request::routeIs('user.dashboard') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('user.dashboard') }}"><i
+                        class="fas fa-cloud"></i><span>Dashboard</span></a>
+            </li>
+            <li class="dropdown {{ Request::routeIs('user.changelog') ? 'active' : '' }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown" aria-expanded="false"><i
+                        class="fas fa-cloud"></i>
+                    <span>Changelog</span></a>
+                <ul class="dropdown-menu">
+
+                    <li class="{{ Request::routeIs('user.changelog') ? 'active' : '' }}"><a class="nav-link"
+                            href="{{ route('user.changelog') }}">Changelog</a>
+                    </li>
+
+                </ul>
+            </li>
+        </ul>
     </aside>
 </div>

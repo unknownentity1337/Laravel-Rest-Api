@@ -61,14 +61,8 @@
                 <x-jet-label for="Status" value="{{ __('Status') }}" />
                 <small>Api Status</small>
                 <select wire:model.defer="api.status" id="status" class="mt-1 block w-full form-control shadow-none">
-                    @if ($action == 'createApi')
-                        <option>-- Select Status --</option>
-                        <option value="1">Active</option>
-                        <option value="0">Deactive</option>
-                    @else
-                        <option value="1" {{ $api->status == '1' ? 'selected' : '' }}>Active</option>
-                        <option value="0" {{ $api->status == '1' ? 'selected' : '' }}>Deactive</option>
-                    @endif
+                    <option value="1">Active</option>
+                    <option value="0">Deactive</option>
                 </select>
                 <x-jet-input-error for="api.status" class="mt-2" />
             </div>

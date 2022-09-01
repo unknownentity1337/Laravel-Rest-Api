@@ -64,5 +64,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'isAdmin' => \App\Http\Middleware\isAdmin::class,
         'ApiLimit' => \App\Http\Middleware\ApiLimit::class,
+        'visitor' => \App\Http\Middleware\Visitor::class,
     ];
 }

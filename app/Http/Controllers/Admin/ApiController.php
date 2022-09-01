@@ -10,7 +10,7 @@ class ApiController extends Controller
 {
     public function view()
     {
-        return view('pages.api.api-data', [
+        return view('pages.admin.api.api-data', [
             'api' => Api::class
         ]);
     }

@@ -12,7 +12,7 @@ class CategoryController extends Controller
 
     public function view()
     {
-        return view('pages.category.category-data', [
+        return view('pages.admin.category.category-data', [
             'category' => Category::class
         ]);
     }

@@ -25,7 +25,7 @@ class isAdmin
             if (Auth::user()->role == 1) {
                 return $next($request);
             } else {
-                abort(403);
+                abort(404);
             }
         } else {
             redirect()->route('login')->with('message', 'Login First');

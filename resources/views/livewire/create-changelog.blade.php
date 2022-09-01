@@ -20,8 +20,7 @@
             <div class="form-group col-span-6 sm:col-span-5">
                 <x-jet-label for="content" value="{{ __('Description') }}" />
                 <small>Description</small>
-                <textarea wire:model.defer="changelog.content" class="mt-1 block w-full form-control shadow-none" id="content"
-                    name="changelog.content">
+                <textarea wire:model.defer="content" class="mt-1 block w-full form-control shadow-none" id="content" name="content">
                         @if ($action == 'updateChangelog')
 {!! $changelog->content !!}
 @endif
@@ -50,7 +49,7 @@
         .create(document.querySelector('#content'))
         .then(editor => {
             editor.model.document.on('change:data', () => {
-                @this.set('changelog.content', editor.getData());
+                @this.set('content', editor.getData());
             })
         })
         .catch(error => {

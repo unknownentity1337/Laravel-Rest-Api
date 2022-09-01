@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Total;
 use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
@@ -78,6 +79,7 @@ class ApiReset extends Command
                     'limit_max' => env('LIMIT_FREE_REQUEST')
                 ]
             );
+        Total::where('id', 1)->update(["today_request" => 0]);
 
         $this->info('Successfully Reset Limit');
     }

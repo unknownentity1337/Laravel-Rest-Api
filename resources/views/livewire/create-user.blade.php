@@ -89,17 +89,9 @@
                 <small>User Status</small>
                 <select wire:model.defer="user.status" id="status"
                     class="mt-1 block w-full form-control shadow-none">
-                    @if ($action == 'createUser')
-                        <option>-- Select Status --</option>
-                        <option value="Free">Free</option>
-                        <option value="Premium">Premium</option>
-                        <option value="Vip">Vip</option>
-                    @else
-                        <option value="Free" {{ $this->user->status == 'Free' ? 'selected' : '' }}>Free</option>
-                        <option value="Premium" {{ $this->user->status == 'Premium' ? 'selected' : '' }}>Premium
-                        </option>
-                        <option value="Vip" {{ $this->user->status == 'Vip' ? 'selected' : '' }}>Vip</option>
-                    @endif
+                    <option value="Free">Free</option>
+                    <option value="Premium">Premium</option>
+                    <option value="Vip">Vip</option>
                 </select>
                 <x-jet-input-error for="user.status" class="mt-2" />
             </div>

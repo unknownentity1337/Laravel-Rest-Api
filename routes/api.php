@@ -20,6 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('check', [UserController::class, 'check_api'])->name('check_api');
 Route::group(['middleware' => 'ApiLimit:Free,Vip,Premium'], function () {
-    route::get('check', [UserController::class, 'check_api']);
+    Route::get('anime', [AnimeController::class, 'otaku'])->name('api.otaku');
 });

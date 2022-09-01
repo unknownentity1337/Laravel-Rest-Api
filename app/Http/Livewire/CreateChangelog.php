@@ -8,18 +8,16 @@ use Livewire\Component;
 class CreateChangelog extends Component
 {
     public $changelog;
+    public $content;
     public $changelogId;
     public $action;
     public $button;
 
     protected function getRules()
     {
-        $rules = ($this->action == "updateChangelog") ? [
+        $rules = [
             'changelog.title' => 'required',
-            'changelog.content' => 'required'
-        ] : [
-            'changelog.title' => 'required',
-            'changelog.content' => 'required'
+            'content' => 'required'
         ];
 
         return $rules;
@@ -43,7 +41,7 @@ class CreateChangelog extends Component
             ->where('id', $this->changelogId)
             ->update([
                 "title" => $this->changelog->title,
-                "content" => $this->changelog->content,
+                "content" => $this->content,
             ]);
         $this->emit('saved');
     }

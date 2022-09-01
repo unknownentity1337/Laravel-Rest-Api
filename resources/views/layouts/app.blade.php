@@ -39,8 +39,7 @@
     <div id="app">
         <div class="main-wrapper">
             @include('components.navbar')
-            @include('components.sidebar')
-
+            @include('components.admin-sidebar')
             <!-- Main Content -->
             <div class="main-content">
                 <section class="section">

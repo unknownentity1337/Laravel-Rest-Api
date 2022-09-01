@@ -6,6 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
@@ -30,6 +32,7 @@ class User extends Authenticatable
         'status',
         'limit_max',
         // 'limit_count',
+        'api_key',
         'password',
         'is_expired',
         'expired_at',
@@ -75,5 +78,26 @@ class User extends Authenticatable
         return empty($query) ? static::query()
             : static::where('name', 'like', '%' . $query . '%')
             ->orWhere('email', 'like', '%' . $query . '%');
+    }
+
+    /**
+     * Generate Secure Key
+     */
+
+    public static function generateKey()
+    {
+        $key = Str::random(12);
+        // $crypt = Crypt::encryptString($key);
+        return $key;
+    }
+
+    public static function getByKey($key)
+    {
+        return self::where('api_key', $key)->first();
+    }
+
+    public static function isValidKey($key)
+    {
+        return self::getByKey($key) instanceof self;
     }
 }

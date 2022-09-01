@@ -9,7 +9,7 @@ class ChangelogController extends Controller
 {
     public function view()
     {
-        return view('pages.changelog.changelog-data', [
+        return view('pages.admin.changelog.changelog-data', [
             'changelog' => Changelog::class
         ]);
     }
