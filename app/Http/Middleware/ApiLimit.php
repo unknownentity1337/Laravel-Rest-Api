@@ -40,7 +40,7 @@ class ApiLimit
                             User::where('api_key', $apikey)->update([
                                 "limit_count" => DB::raw('limit_count+1')
                             ]);
-                            Total::where('id', 1)->update([
+                            Total::first()->update([
                                 "total_request" => DB::raw('total_request+1'),
                                 "today_request" =>  DB::raw('today_request+1')
                             ]);
@@ -65,7 +65,7 @@ class ApiLimit
                                 ], 500);
                             } else {
                                 User::where('api_key', $apikey)->update(["limit_count" => DB::raw('limit_count+1')]);
-                                Total::where('id', 1)->update([
+                                Total::first()->update([
                                     "total_request" => DB::raw('total_request+1'),
                                     "today_request" =>  DB::raw('today_request+1')
                                 ]);

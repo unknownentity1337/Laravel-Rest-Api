@@ -13,6 +13,13 @@
     @endisset
 
     <!-- Styles -->
+    <style>
+        li {
+            font-size: 14px;
+            margin-left: 11px;
+            list-style-type: circle;
+        }
+    </style>
     <link
         href="https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Nunito:wght@400;600;700&family=Open+Sans&display=swap"
         rel="stylesheet">

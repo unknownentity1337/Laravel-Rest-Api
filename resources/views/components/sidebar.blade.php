@@ -75,20 +75,23 @@ $navigation_links = array_to_object($links);
             <li class="menu-header">Dashboard</li>
             <li class="{{ Request::routeIs('user.dashboard') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('user.dashboard') }}"><i
-                        class="fas fa-cloud"></i><span>Dashboard</span></a>
+                        class="fas fa-tachometer-alt-average"></i><span>Dashboard</span></a>
             </li>
-            <li class="dropdown {{ Request::routeIs('user.changelog') ? 'active' : '' }}">
+            <li class="{{ Request::routeIs('user.changelog') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('user.changelog') }}"><i
+                        class="fas fa-sync"></i><span>Changelog</span></a>
+            </li>
+            {{-- <li class="dropdown {{ Request::routeIs('user.changelog') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown" aria-expanded="false"><i
-                        class="fas fa-cloud"></i>
+                        class="fas fa-sync"></i>
                     <span>Changelog</span></a>
                 <ul class="dropdown-menu">
 
                     <li class="{{ Request::routeIs('user.changelog') ? 'active' : '' }}"><a class="nav-link"
                             href="{{ route('user.changelog') }}">Changelog</a>
                     </li>
-
                 </ul>
-            </li>
+            </li> --}}
         </ul>
     </aside>
 </div>

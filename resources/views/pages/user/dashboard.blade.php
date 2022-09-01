@@ -23,10 +23,10 @@
                 </div>
                 <div class="card-wrap">
                     <div class="card-header">
-                        <h4>Request</h4>
+                        <h4>Total Request</h4>
                     </div>
                     <div class="card-body">
-                        {{ $req->total_request }}
+                        {{ $req ? $req->total_request : 0 }}
                     </div>
                 </div>
             </div>
@@ -56,27 +56,13 @@
                         <h4>Today</h4>
                     </div>
                     <div class="card-body">
-                        {{ $req->today_request }}
+                        {{ $req ? $req->today_request : 0 }}
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-            <div class="card card-statistic-1">
-                <div class="card-icon bg-primary">
-                    <i class="fas fa-sack-dollar"></i>
-                </div>
-                <div class="card-wrap">
-                    <div class="card-header">
-                        <h4>Donated</h4>
-                    </div>
-                    <div class="card-body">
-                        0 Rp
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <div class="col-lg-3 col-md-6 col-sm-6 col-12">
             <div class="card card-statistic-1">
                 <div class="card-icon bg-warning">
@@ -122,6 +108,21 @@
                 </div>
             </div>
         </div>
+        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="card card-statistic-1">
+                <div class="card-icon bg-primary">
+                    <i class="fas fa-sack-dollar"></i>
+                </div>
+                <div class="card-wrap">
+                    <div class="card-header">
+                        <h4>Donated</h4>
+                    </div>
+                    <div class="card-body">
+                        0 Rp
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-12 col-md-10 col-lg-6">
                 <div class="card card-stats card-round">
@@ -131,20 +132,20 @@
                     </div>
                     <div class="card-body mb-3">
                         <ol>
-                            <li>1. Dilarang flooding requests.</li>
-                            <li>2.
+                            <li> Dilarang flooding requests.</li>
+                            <li>
                                 Membuat banyak akun pada IP yang sama maka IP otomatis akan di block.
                             </li>
-                            <li>3.
+                            <li>
                                 Owner dapat sewaktu waktu mengubah ketentuan di website ini, demi menjaga
                                 kualitas website.
                             </li>
-                            <li>4.
+                            <li>
                                 Dilarang keras untuk menyebarkan apikey Anda, jika ketahuan. InsyaAllah akan di
                                 block :)
                             </li>
-                            <li>5. Dilarang membuat api dari api yang telah disediakan.</li>
-                            <li>6.
+                            <li> Dilarang membuat api dari api yang telah disediakan.</li>
+                            <li>
                                 Owner tidak bertanggung jawab atas apa yang Anda lakukan dalam penggunaan
                                 website ini.
                             </li>
@@ -163,15 +164,15 @@
                         <ol>
                             <li>Q : Mengapa tidak menyediakan fitur nsfw,hentai atau sejenisnya?</li>
                             <li>
-                                A : Owner tidak ingin dipertanggung jawabkan di akhirat atas apa yang telah owner buat ,
-                                oleh karena itu owner hanya membuat fitur yang bermanfaat saja :)
+                                A : Saya tidak ingin mempertanggung jawabkan di akhirat atas apa yang telah saya buat ,
+                                oleh karena itu saya tidak menyediakan api tersebut :)
                             </li>
-                            <li>Q : Website ini dibuat dengan apa</li>
+                            <li>Q : Website ini dibuat dengan apa?</li>
                             <li>A : Website ini dibuat menggunakan laravel + livewire </li>
-                            <li>Q : Kapankah api key akan direset</li>
-                            <li>A : Api key akan di reset setiap pukul 00:00 malam , dapat dilihat secara langsung di <a
+                            <li>Q : Kapankah limit api key akan direset?</li>
+                            <li>A : Limit api key akan di reset setiap pukul 00:00 , dapat dilihat secara langsung di <a
                                     href="https://timee.io/3aG">Sini</a></li>
-                            <li>Q : Apakah source code website ini dijual</li>
+                            <li>Q : Apakah source code website ini dijual?</li>
                             <li>A : Tidak , source code website ini tidak dijual , silahkan gunakan api yang tersedia
                                 secara gratis :) </li>
                         </ol>

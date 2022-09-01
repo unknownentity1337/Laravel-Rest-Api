@@ -79,7 +79,7 @@ class ApiReset extends Command
                     'limit_max' => env('LIMIT_FREE_REQUEST')
                 ]
             );
-        Total::where('id', 1)->update(["today_request" => 0]);
+        Total::first()->update(["today_request" => 0]);
 
         $this->info('Successfully Reset Limit');
     }
