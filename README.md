@@ -9,6 +9,8 @@
 - [x] Crud Api
 
 ### User
-- [ ] Profile Api Key
+- [x] Profile Api Key
 - [ ] Pricing
+- [ ] Changelog
+- [x] Utils ( Visitor , Total Request , Today , Total User)
 - [ ] View Api
