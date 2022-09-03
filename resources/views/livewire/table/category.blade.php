@@ -10,6 +10,10 @@
                         Title
                         @include('components.sort-icon', ['field' => 'title'])
                     </a></th>
+                <th><a wire:click.prevent="sortBy('icon')" role="button" href="#">
+                        Icon
+                        @include('components.sort-icon', ['field' => 'icon'])
+                    </a></th>
                 <th><a wire:click.prevent="sortBy('slug')" role="button" href="#">
                         Slug
                         @include('components.sort-icon', ['field' => 'slug'])
@@ -26,6 +30,7 @@
                 <tr x-data="window.__controller.dataTableController({{ $category->id }})">
                     <td>{{ $category->id }}</td>
                     <td>{{ $category->title }}</td>
+                    <td>{!! $category->icon !!}</td>
                     <td>{{ $category->slug }}</td>
                     <td>{{ $category->created_at->format('d M Y H:i') }}</td>
                     <td class="whitespace-no-wrap row-action--icon">

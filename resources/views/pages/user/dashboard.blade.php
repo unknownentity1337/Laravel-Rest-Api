@@ -1,4 +1,13 @@
 @section('title', 'User Dashboard')
+@push('style')
+    <style>
+        li {
+            font-size: 14px;
+            margin-left: 11px;
+            list-style-type: circle;
+        }
+    </style>
+@endpush
 <x-user-layout>
     <div class="row">
         <div class="col-lg-3 col-md-6 col-sm-6 col-12">
@@ -128,7 +137,7 @@
                 <div class="card card-stats card-round">
                     <div class="card-header">
                         <h3 style="margin-bottom: 0">
-                            S&K
+                            T.O.S
                     </div>
                     <div class="card-body mb-3">
                         <ol>
@@ -157,16 +166,11 @@
                 <div class="card card-stats card-round">
                     <div class="card-header">
                         <h3 style="margin-bottom: 0">
-                            FQA
+                            F.Q.A
                         </h3>
                     </div>
                     <div class="card-body mb-3">
                         <ol>
-                            <li>Q : Mengapa tidak menyediakan fitur nsfw,hentai atau sejenisnya?</li>
-                            <li>
-                                A : Saya tidak ingin mempertanggung jawabkan di akhirat atas apa yang telah saya buat ,
-                                oleh karena itu saya tidak menyediakan api tersebut :)
-                            </li>
                             <li>Q : Website ini dibuat dengan apa?</li>
                             <li>A : Website ini dibuat menggunakan laravel + livewire </li>
                             <li>Q : Kapankah limit api key akan direset?</li>

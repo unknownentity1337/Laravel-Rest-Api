@@ -13,7 +13,6 @@
                                 <div class="mb-2">
                                     <span class="text-job text-primary">{{ $cg->created_at->format('d M Y') }}</span>
                                     <span class="bullet"></span>
-
                                 </div>
                                 {!! $cg->content !!}
                             </div>

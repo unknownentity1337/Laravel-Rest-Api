@@ -22,6 +22,10 @@
                         Method
                         @include('components.sort-icon', ['field' => 'method'])
                     </a></th>
+                <th><a wire:click.prevent="sortBy('parameter')" role="button" href="#">
+                        Paramater
+                        @include('components.sort-icon', ['field' => 'parameter'])
+                    </a></th>
                 <th><a wire:click.prevent="sortBy('status')" role="button" href="#">
                         Status
                         @include('components.sort-icon', ['field' => 'status'])
@@ -41,6 +45,7 @@
                     <td>{{ $api->description }}</td>
                     <td>{{ $api->category->title }}</td>
                     <td>{{ $api->method }}</td>
+                    <td>{{ $api->parameter }}</td>
                     <td>{{ $api->status ? 'Active' : 'Deactive' }}</td>
                     <td>{{ $api->created_at->format('d M Y H:i') }}</td>
                     <td class="whitespace-no-wrap row-action--icon">

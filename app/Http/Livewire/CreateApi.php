@@ -23,6 +23,7 @@ class CreateApi extends Component
             'api.category_id' => 'required',
             'api.method' => 'required',
             'api.status' => 'required',
+            'api.parameter' => 'required'
             // 'api.docs_id' => 'required'
         ];
         return $rules;
@@ -48,6 +49,7 @@ class CreateApi extends Component
                 "description" => $this->api->description,
                 "category_id" => $this->api->category_id,
                 "method" => $this->api->method,
+                "parameter" => $this->api->parameter,
                 "status" => $this->api->status,
                 // "docs_id" => $this->api->docs_id
             ]);

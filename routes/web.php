@@ -8,7 +8,6 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\User\DashboardController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +20,27 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 
-Route::get('/', [DashboardController::class, 'view'])->name('user.dashboard');
+// Route Guest
+Route::get('/', [DashboardController::class, 'view'])->name('user.dashboard')->middleware('visitor');
+Route::get('docs', [DashboardController::class, 'all'])->name('docs')->middleware('visitor');
+Route::get('docs/example', [DashboardController::class, 'all'])->name('docs.example')->middleware('visitor');
+Route::get('docs/all', [DashboardController::class, 'all'])->name('docs.all')->middleware('visitor');
+Route::get('changelog', [DashboardController::class, 'changelog'])->name('guest.changelog')->middleware('visitor');
+Route::get('pricing', [DashboardController::class, 'pricing'])->name('guest.pricing')->middleware('visitor');
+
+// Route Category
+foreach (App\Models\Category::all() as $c) {
+    Route::get("docs/" . "{" . $c->slug . "}", [DashboardController::class, 'category'])->name('docs.' . $c->slug);
+}
+
+// Route::group(['middleware' => 'visitor'], function () {
+//     Route::prefix("docs")->middleware("visitor")->group(function () {
+//         foreach (App\Models\Category::all() as $c) {
+//             Route::get("{category}", [DashboardController::class, 'category'])->name('docs.' . $c->slug);
+//         }
+//     });
+// });
+
 Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     // Route Admin
     Route::prefix("admin")->middleware(['isAdmin'])->group(function () {
@@ -50,18 +69,5 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
 
     Route::group(["middleware" => ['auth:sanctum', 'verified', 'visitor']], function () {
         Route::get('dashboard', [DashboardController::class, 'view'])->name('user.dashboard');
-        Route::get('changelog', [DashboardController::class, 'changelog'])->name('user.changelog');
-        Route::get('pricing', [DashboardController::class, 'changelog'])->name('user.pricing');
     });
 });
-Route::get('testing', function (Request $request) {
-    $header = $request->header('X-API-KEY');
-    dd($header);
-});
-
-// Route::group(["middleware" => ['auth:sanctum']], function () {
-//     Route::view('/dashboard', "dashboard")->name('dashboard');
-//     Route::get('/user', [UserController::class, "index_view"])->name('user');
-//     Route::view('/user/new', "pages.user.user-new")->name('user.new');
-//     Route::view('/user/edit/{userId}', "pages.user.user-edit")->name('user.edit');
-// });

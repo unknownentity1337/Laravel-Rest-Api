@@ -79,6 +79,23 @@ trait WithDataTable
                 ];
                 break;
 
+            case 'all-api':
+                $apis = $this->model::search($this->search)
+                    ->orderBy($this->sortField, $this->sortAsc ? 'desc' : 'asc')
+                    ->paginate($this->perPage);
+
+                return [
+                    "view" => 'livewire.table.api',
+                    "apis" => $apis,
+                    "data" => array_to_object([
+                        'href' => [
+                            'create_new' => route('api.new'),
+                            'create_new_text' => 'Create New Api',
+                        ]
+                    ])
+                ];
+                break;
+
             default:
                 # code...
                 break;

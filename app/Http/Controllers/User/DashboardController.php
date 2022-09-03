@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Api;
+use App\Models\Category;
 use App\Models\Changelog;
 use App\Models\Total;
 use App\Models\User;
@@ -27,7 +28,28 @@ class DashboardController extends Controller
 
     public function changelog()
     {
-        $changelogs = Changelog::all();
+        $changelogs = Changelog::all()
+            ->sortByDesc('created_at');
         return view("pages.user.changelog", compact('changelogs'));
+    }
+
+    public function all()
+    {
+        $all = Api::with(['category'])
+            ->get();
+        return view("pages.user.all-api", compact('all'));
+    }
+
+    public function pricing()
+    {
+        return view("pages.user.pricing");
+    }
+
+    public function category($category)
+    {
+        $c = Category::with(['api'])
+            ->where('slug', $category)
+            ->first();
+        return view("pages.user.category", compact('c'));
     }
 }

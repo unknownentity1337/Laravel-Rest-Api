@@ -12,14 +12,6 @@
         {{ $meta }}
     @endisset
 
-    <!-- Styles -->
-    <style>
-        li {
-            font-size: 14px;
-            margin-left: 11px;
-            list-style-type: circle;
-        }
-    </style>
     <link
         href="https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Nunito:wght@400;600;700&family=Open+Sans&display=swap"
         rel="stylesheet">
@@ -34,13 +26,7 @@
     <link rel="stylesheet" href="{{ asset('fa/v4-font-face.min.css') }}">
     <link rel="stylesheet" href="{{ asset('fa/v4-shims.min.css') }}">
     <link rel="stylesheet" href="{{ asset('fa/v5-font-face.min.css') }}">
-    {{-- <link rel="stylesheet" href="https://kit-free.fontawesome.com/releases/latest/css/free-v4-shims.min.css"
-    media="all"> 
-    <link rel="stylesheet" href="{{ asset('fa/v4-shims.min.css') }}">
-     <link rel="stylesheet" href="https://kit-free.fontawesome.com/releases/latest/css/free-v4-font-face.min.css"
-        media="all"> 
-    <link rel="stylesheet" href="https://kit-free.fontawesome.com/releases/latest/css/free.min.css" media="all"> --}}
-
+    @stack('style')
     <livewire:styles />
 
     <!-- Scripts -->
@@ -85,9 +71,15 @@
     <script defer src="{{ asset('vendor/sweetalert/sweetalert.min.js') }}"></script>
     <script defer src="{{ asset('stisla/js/modules/chart.min.js') }}"></script>
     <script defer src="{{ asset('vendor/select2/select2.min.js') }}"></script>
-
     <script src="{{ asset('stisla/js/stisla.js') }}"></script>
     <script src="{{ asset('stisla/js/scripts.js') }}"></script>
+    {{-- <script src="{{ asset('stisla/js/modules/datatables.min.js') }}"></script>
+    <script src="{{ asset('stisla/js/modules/jquery-ui.min.js') }}"></script> --}}
+    <script src="{{ asset('stisla/js/modules/datatables/datatables.min.js') }}"></script>
+    <script src="{{ asset('stisla/js/modules/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('stisla/js/modules/datatables/dataTables.select.min.js') }}"></script>
+    <script src="{{ asset('stisla/js/modules/jquery-ui.min.js') }}"></script>
+
 
     <livewire:scripts />
     <script src="{{ mix('js/app.js') }}" defer></script>
@@ -95,6 +87,8 @@
     @isset($script)
         {{ $script }}
     @endisset
+
+    @stack('script')
 </body>
 
 </html>

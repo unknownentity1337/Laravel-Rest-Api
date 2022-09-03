@@ -62,7 +62,7 @@ class ApiLimit
                                 return response()->json([
                                     "status" => false,
                                     "msg" => "Limit Key Reached , Please Wait Reset Every Day"
-                                ], 500);
+                                ], 500, ["Application/json"]);
                             } else {
                                 User::where('api_key', $apikey)->update(["limit_count" => DB::raw('limit_count+1')]);
                                 Total::first()->update([

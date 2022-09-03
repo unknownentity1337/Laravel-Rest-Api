@@ -17,6 +17,7 @@ class CreateCategory extends Component
     {
         $rules = [
             'category.title' => 'required',
+            'category.icon' => 'required',
             'category.slug' => 'required'
         ];
         return $rules;
@@ -39,6 +40,7 @@ class CreateCategory extends Component
             ->where('id', $this->categoryId)
             ->update([
                 "title" => $this->category->title,
+                "icon" => $this->category->icon,
                 "slug" => Str::of($this->category->title)->slug('-'),
             ]);
         $this->emit('saved');

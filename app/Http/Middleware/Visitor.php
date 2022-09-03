@@ -18,7 +18,8 @@ class Visitor
     public function handle(Request $request, Closure $next)
     {
         Utils::updateOrInsert([
-            'ip_address' => request()->ip(), 'user_agent' => request()->userAgent()
+            'ip_address' => request()->ip(),
+            'user_agent' => request()->userAgent()
         ]);
         return $next($request);
     }

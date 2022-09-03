@@ -18,6 +18,14 @@
             </div>
 
             <div class="form-group col-span-6 sm:col-span-5">
+                <x-jet-label for="title" value="{{ __('Icon') }}" />
+                <small>Icon</small>
+                <x-jet-input id="icon" type="text" class="mt-1 block w-full form-control shadow-none"
+                    wire:model.defer="category.icon" />
+                <x-jet-input-error for="category.icon" class="mt-2" />
+            </div>
+
+            <div class="form-group col-span-6 sm:col-span-5">
                 <x-jet-label for="content" value="{{ __('Slug') }}" />
                 <small>Slug</small>
                 {{-- @if ($action == 'updateCategory') --}}

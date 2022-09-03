@@ -58,9 +58,18 @@
             </div>
 
             <div class="form-group col-span-6 sm:col-span-5">
+                <x-jet-label for="parameter" value="{{ __('Parameter') }}" />
+                <small>Api Parameter</small>
+                <x-jet-input id="parameter" type="text" class="mt-1 block w-full form-control shadow-none"
+                    wire:model.defer="api.parameter" />
+                <x-jet-input-error for="api.parameter" class="mt-2" />
+            </div>
+
+            <div class="form-group col-span-6 sm:col-span-5">
                 <x-jet-label for="Status" value="{{ __('Status') }}" />
                 <small>Api Status</small>
                 <select wire:model.defer="api.status" id="status" class="mt-1 block w-full form-control shadow-none">
+                    <option>-- Select Category --</option>
                     <option value="1">Active</option>
                     <option value="0">Deactive</option>
                 </select>

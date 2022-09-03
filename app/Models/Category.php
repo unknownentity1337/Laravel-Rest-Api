@@ -13,7 +13,8 @@ class Category extends Model
 
     protected $fillable = [
         'title',
-        'slug'
+        'icon',
+        'slug',
     ];
 
     public function api()
