@@ -50,6 +50,7 @@ class DashboardController extends Controller
         $c = Category::with(['api'])
             ->where('slug', $category)
             ->first();
+
         return view("pages.user.category", compact('c'));
     }
 }

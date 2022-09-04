@@ -10,7 +10,9 @@
 
 ### User
 - [x] Profile Api Key
-- [ ] Pricing
-- [ ] Changelog
+- [x] Pricing
+- [x] Changelog
 - [x] Utils ( Visitor , Total Request , Today , Total User)
-- [ ] View Api
+- [x] View Api
+- [ ] Example Code
+- [ ] Library For Api

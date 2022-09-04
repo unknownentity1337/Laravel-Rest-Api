@@ -15,6 +15,8 @@ class Api extends Model
         'category_id',
         'method',
         'parameter',
+        'slug',
+        'for',
         'status',
         // 'docs_id'
     ];

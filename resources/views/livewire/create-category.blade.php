@@ -13,27 +13,26 @@
                 <x-jet-label for="title" value="{{ __('Title') }}" />
                 <small>Title</small>
                 <x-jet-input id="title" type="text" class="mt-1 block w-full form-control shadow-none"
-                    wire:model.defer="category.title" />
+                    wire:model="category.title" />
                 <x-jet-input-error for="category.title" class="mt-2" />
             </div>
 
             <div class="form-group col-span-6 sm:col-span-5">
-                <x-jet-label for="title" value="{{ __('Icon') }}" />
+                <x-jet-label for="slug" value="{{ __('Slug') }}" />
+                <small>Slug</small>
+                <x-jet-input id="slug" type="text" class="mt-1 block w-full form-control shadow-none"
+                    wire:model.defer="category.slug" />
+                <x-jet-input-error for="category.slug" class="mt-2" />
+            </div>
+
+            <div class="form-group col-span-6 sm:col-span-5">
+                <x-jet-label for="icon" value="{{ __('Icon') }}" />
                 <small>Icon</small>
                 <x-jet-input id="icon" type="text" class="mt-1 block w-full form-control shadow-none"
                     wire:model.defer="category.icon" />
                 <x-jet-input-error for="category.icon" class="mt-2" />
             </div>
 
-            <div class="form-group col-span-6 sm:col-span-5">
-                <x-jet-label for="content" value="{{ __('Slug') }}" />
-                <small>Slug</small>
-                {{-- @if ($action == 'updateCategory') --}}
-                <x-jet-input id="slug" type="text" class="mt-1 block w-full form-control shadow-none"
-                    wire:model.defer="category.slug" />
-                <x-jet-input-error for="category.slug" class="mt-2" />
-                {{-- @endif --}}
-            </div>
         </x-slot>
 
         <x-slot name="actions">

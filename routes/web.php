@@ -23,23 +23,14 @@ use Illuminate\Support\Facades\Route;
 // Route Guest
 Route::get('/', [DashboardController::class, 'view'])->name('user.dashboard')->middleware('visitor');
 Route::get('docs', [DashboardController::class, 'all'])->name('docs')->middleware('visitor');
-Route::get('docs/example', [DashboardController::class, 'all'])->name('docs.example')->middleware('visitor');
 Route::get('docs/all', [DashboardController::class, 'all'])->name('docs.all')->middleware('visitor');
+Route::get('docs/example', [DashboardController::class, 'all'])->name('example')->middleware('visitor');
 Route::get('changelog', [DashboardController::class, 'changelog'])->name('guest.changelog')->middleware('visitor');
 Route::get('pricing', [DashboardController::class, 'pricing'])->name('guest.pricing')->middleware('visitor');
 
 // Route Category
-foreach (App\Models\Category::all() as $c) {
-    Route::get("docs/" . "{" . $c->slug . "}", [DashboardController::class, 'category'])->name('docs.' . $c->slug);
-}
+Route::get('docs/{category}', [DashboardController::class, 'category'])->name('docs.category')->middleware('visitor');
 
-// Route::group(['middleware' => 'visitor'], function () {
-//     Route::prefix("docs")->middleware("visitor")->group(function () {
-//         foreach (App\Models\Category::all() as $c) {
-//             Route::get("{category}", [DashboardController::class, 'category'])->name('docs.' . $c->slug);
-//         }
-//     });
-// });
 
 Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     // Route Admin

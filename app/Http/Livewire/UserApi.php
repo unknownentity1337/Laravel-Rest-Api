@@ -31,7 +31,7 @@ class UserApi extends Component
         $this->resetErrorBag();
         $this->validate();
         if (Auth::user()->status == "Free") {
-            toastr()->error('Only For Premmium/Vip User!');
+            toastr()->error('Only For Premium/Vip User!');
         } else {
             User::where('id', Auth::user()->id)->update(['api_key' => $this->api]);
             toastr()->success('Successfully Change Api Key');

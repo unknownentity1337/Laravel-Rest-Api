@@ -58,4 +58,10 @@ class CreateCategory extends Component
     {
         return view('livewire.create-category');
     }
+
+    public function updatedCategoryTitle()
+    {
+        $this->category['slug'] = Str::of($this->category['title'])->slug('-');
+        $this->validateOnly('api.title');
+    }
 }

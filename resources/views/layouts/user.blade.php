@@ -73,8 +73,6 @@
     <script defer src="{{ asset('vendor/select2/select2.min.js') }}"></script>
     <script src="{{ asset('stisla/js/stisla.js') }}"></script>
     <script src="{{ asset('stisla/js/scripts.js') }}"></script>
-    {{-- <script src="{{ asset('stisla/js/modules/datatables.min.js') }}"></script>
-    <script src="{{ asset('stisla/js/modules/jquery-ui.min.js') }}"></script> --}}
     <script src="{{ asset('stisla/js/modules/datatables/datatables.min.js') }}"></script>
     <script src="{{ asset('stisla/js/modules/datatables/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('stisla/js/modules/datatables/dataTables.select.min.js') }}"></script>
@@ -82,12 +80,12 @@
 
 
     <livewire:scripts />
-    <script src="{{ mix('js/app.js') }}" defer></script>
-
+    {{-- <script src="{{ mix('js/app.js') }}" defer></script> --}}
+    {{-- <script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js"
+        data-turbolinks-eval="false"></script> --}}
     @isset($script)
         {{ $script }}
     @endisset
-
     @stack('script')
 </body>
 

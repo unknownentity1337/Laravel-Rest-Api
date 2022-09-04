@@ -25,16 +25,37 @@
         </ul>
         <ul class="sidebar-menu">
             <li class="menu-header">Docs</li>
-            <li class="{{ Request::routeIs('docs.example') ? 'active' : '' }}"><a class="nav-link"
-                    href="{{ route('docs.example') }}"><i class="fas fa-code"></i><span>Example Code</span></a>
+            <li class="{{ Request::routeIs('example') ? 'active' : '' }}"><a class="nav-link"
+                    href="{{ route('example') }}"><i class="fas fa-code"></i><span>Example Code</span></a>
             </li>
             <li class="{{ Request::routeIs('docs.all') ? 'active' : '' }}"><a class="nav-link"
-                    href="{{ route('docs.all') }}"><i class="fas fa-fire"></i><span>All Api</span></a>
+                    href="{{ route('docs.all') }}"><i class="fas fa-fire"></i><span>Api's</span></a>
+            </li>
+        </ul>
+        <ul class="sidebar-menu">
+            <li class="menu-header">Category</li>
+            <li class="{{ Request::segment(2) == 'film' ? 'active' : '' }}"><a class="nav-link"
+                    href="{{ route('docs.category', ['category' => 'film']) }}"><i
+                        class="fas fa-video"></i><span>Film</span></a>
+            </li>
+            <li class="{{ Request::segment(2) == 'anime' ? 'active' : '' }}"><a class="nav-link"
+                    href="{{ route('docs.category', ['category' => 'anime']) }}"><i
+                        class="fas fa-user"></i><span>Anime</span></a>
+            </li>
+            <li class="{{ Request::segment(2) == 'downloader' ? 'active' : '' }}"><a class="nav-link"
+                    href="{{ route('docs.category', ['category' => 'downloader']) }}"><i
+                        class="fas fa-download"></i><span>Downloader</span></a>
             </li>
         </ul>
         {{-- <ul class="sidebar-menu">
             <li class="menu-header">Category</li>
-             <li class="dropdown {{ Request::routeIs('user.changelog') ? 'active' : '' }}">
+            @foreach ($ct as $c)
+                <li class="{{ Route::is('docs.film') ? 'active' : '' }}"><a class="nav-link"
+                        href="{{ route('docs.' . $c->slug, $c->slug) }}">{!! $c->icon !!}<span>{{ $c->title }}</span></a>
+                </li>
+            @endforeach --}}
+
+        {{-- <li class="dropdown {{ Request::routeIs('user.changelog') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown" aria-expanded="false"><i
                         class="fas fa-sync"></i>
                     <span>Changelog</span></a>
@@ -44,7 +65,7 @@
                             href="{{ route('user.changelog') }}">Changelog</a>
                     </li>
                 </ul>
-            </li> 
+            </li>
         </ul> --}}
     </aside>
 </div>

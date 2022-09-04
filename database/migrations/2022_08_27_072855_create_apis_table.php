@@ -20,6 +20,8 @@ class CreateApisTable extends Migration
             $table->foreignId('category_id')->index();
             $table->string('method');
             $table->string('parameter');
+            $table->string('slug');
+            $table->enum('for', ['Free', 'Premium', 'Vip']);
             $table->enum('status', [1, 0]);
             $table->foreignId('docs_id')->index()->default(0);
             $table->timestamps();

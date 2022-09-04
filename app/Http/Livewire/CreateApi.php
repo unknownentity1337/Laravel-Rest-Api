@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Api;
 use App\Models\Category;
 use Livewire\Component;
-use PhpParser\Node\Expr\Cast;
+use Illuminate\Support\Str;
 
 class CreateApi extends Component
 {
@@ -23,7 +23,9 @@ class CreateApi extends Component
             'api.category_id' => 'required',
             'api.method' => 'required',
             'api.status' => 'required',
-            'api.parameter' => 'required'
+            'api.parameter' => 'required',
+            'api.slug' => 'required',
+            'api.for' => 'required'
             // 'api.docs_id' => 'required'
         ];
         return $rules;
@@ -50,6 +52,8 @@ class CreateApi extends Component
                 "category_id" => $this->api->category_id,
                 "method" => $this->api->method,
                 "parameter" => $this->api->parameter,
+                "slug" => $this->api->slug,
+                "for" => $this->api->for,
                 "status" => $this->api->status,
                 // "docs_id" => $this->api->docs_id
             ]);
@@ -68,5 +72,11 @@ class CreateApi extends Component
     public function render()
     {
         return view('livewire.create-api');
+    }
+
+    public function updatedApiTitle()
+    {
+        $this->api['slug'] = Str::of($this->api['title'])->slug('-');
+        $this->validateOnly('api.title');
     }
 }
