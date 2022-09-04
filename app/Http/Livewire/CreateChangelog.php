@@ -27,6 +27,7 @@ class CreateChangelog extends Component
     {
         $this->resetErrorBag();
         $this->validate();
+        $this->changelog['content'] = $this->content;
         Changelog::create($this->changelog);
         $this->emit('saved');
         $this->reset('changelog');
@@ -36,12 +37,12 @@ class CreateChangelog extends Component
     {
         $this->resetErrorBag();
         $this->validate();
-
+        $this->changelog['content'] = $this->content;
         Changelog::query()
             ->where('id', $this->changelogId)
             ->update([
                 "title" => $this->changelog->title,
-                "content" => $this->content,
+                "content" => $this->changelog->content,
             ]);
         $this->emit('saved');
     }
