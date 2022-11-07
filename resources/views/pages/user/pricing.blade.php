@@ -35,7 +35,7 @@
                         @if (Auth()->user()->status == 'Free')
                             <a href="#">Current Plan</a>
                         @else
-                            <a href="https://wa.me/6285156592604">Buy <i class="fas fa-arrow-right"></i></a>
+                            <a href="#">Register <i class="fas fa-arrow-right"></i></a>
                         @endif
                     @else
                         <a href="#">Login First </a>

@@ -62,3 +62,5 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
         Route::get('dashboard', [DashboardController::class, 'view'])->name('user.dashboard');
     });
 });
+
+require_once  __DIR__ . '/jetstream.php';
